@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class SaludoController {
     
-    @RequestMapping("saludo")
+    @RequestMapping("saludo.do")
     public String saludar(){
         return "saludo.jsp";
     }
