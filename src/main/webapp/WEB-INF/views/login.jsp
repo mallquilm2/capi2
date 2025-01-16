@@ -9,8 +9,8 @@
         <h1>Login de Usuario</h1>
         <br/>
         <form action="loginAccion.do" method="post">
-            Usuario: <input type="text" name="txtUsuario"><br/>
-            Clave: <input type="password" name="txtClave"><br/>
+            Usuario: <input type="text" name="usuario"><br/>
+            Clave: <input type="password" name="clave"><br/>
             <input type="submit" value="Ingresar"/>
         </form>
         <%
