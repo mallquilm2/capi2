@@ -6,6 +6,14 @@ public class UsuarioDTO {
     private String clave;
     private String nombreCompleto;
 
+    public UsuarioDTO() {}
+
+    public UsuarioDTO(String usuario, String clave, String nombreCompleto) {
+        this.usuario = usuario;
+        this.clave = clave;
+        this.nombreCompleto = nombreCompleto;
+    }
+
     public String getUsuario() {
         return usuario;
     }

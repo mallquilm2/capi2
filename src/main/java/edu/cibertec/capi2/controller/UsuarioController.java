@@ -28,7 +28,8 @@ public class UsuarioController {
         if(ue == null){
             mv = new ModelAndView("login", "msgError", "Usuario y clave no existen.");
         }else{
-            mv = new ModelAndView("saludo", "mensaje", "Bienvenido "+ue.getNombreCompleto());
+            //mv = new ModelAndView("saludo", "mensaje", "Bienvenido "+ue.getNombreCompleto());
+            mv = new ModelAndView("usuarioLista", "lista", usuarioService.getListarUsuarios());
         }
         return mv;
     }
