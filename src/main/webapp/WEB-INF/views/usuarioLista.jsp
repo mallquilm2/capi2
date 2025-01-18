@@ -29,5 +29,6 @@
                 <% }%>
             </tbody>
         </table>
+            <a href="usuarioCrear.do">Crear Usuario</a>
     </body>
 </html>
