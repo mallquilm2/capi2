@@ -20,7 +20,7 @@
             <div class="row d-flex justify-content-center mx-auto">
                 <h1>Datos del Usuario</h1>
                 <div class="col-md-6 col-xs-12 div-style">
-                    <mvc:form modelAttribute="usuarioBean" action="grabarUsuario.do">
+                    <mvc:form modelAttribute="usuarioBean" action="grabarUsuario.do" enctype="multipart/form-data">
                         <table>
                             <tr>
                                 <td><mvc:label path="usuario">Usuario:</mvc:label></td>

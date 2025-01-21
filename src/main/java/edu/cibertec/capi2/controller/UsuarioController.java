@@ -6,6 +6,7 @@ import edu.cibertec.capi2.service.UsuarioService;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -55,6 +56,12 @@ public class UsuarioController {
             mv = new ModelAndView("usuarioLista", "lista", usuarioService.getListarUsuarios());
         }
         return mv; 
+    }
+    
+    @RequestMapping("fotoMostrar.do")
+    public String fotoMostrar(@RequestParam("codigoUsuario") String codigoUsuario, Model modelo){
+        modelo.addAttribute("usuario", usuarioService.getUsuario(codigoUsuario));
+        return "fotoUsuario";
     }
     
 }

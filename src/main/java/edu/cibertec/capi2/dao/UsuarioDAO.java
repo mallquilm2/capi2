@@ -37,6 +37,17 @@ public class UsuarioDAO {
         return usuario;
     }
     
+    public UsuarioDTO getUsuario(String codigo){
+        UsuarioDTO rpta = null;
+        for (UsuarioDTO usuario : listaUsuarios) {
+            if(usuario.getUsuario().equalsIgnoreCase(codigo)){
+                rpta = usuario;
+                break;
+            }
+            
+        }
+        return rpta;
+    }
     
     
 }

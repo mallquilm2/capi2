@@ -25,4 +25,8 @@ public class UsuarioService {
         return usuarioDAO.getListarUsuarios();
     }
     
+    public UsuarioDTO getUsuario(String codigo){
+        return usuarioDAO.getUsuario(codigo);
+    }
+    
 }
