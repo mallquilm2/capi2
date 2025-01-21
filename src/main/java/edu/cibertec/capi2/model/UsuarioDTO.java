@@ -14,6 +14,8 @@ public class UsuarioDTO {
     private String clave;
     
     private String nombreCompleto;
+    
+    private byte[] foto;
 
     public UsuarioDTO() {}
 
@@ -45,6 +47,14 @@ public class UsuarioDTO {
 
     public void setNombreCompleto(String nombreCompleto) {
         this.nombreCompleto = nombreCompleto;
+    }
+
+    public byte[] getFoto() {
+        return foto;
+    }
+
+    public void setFoto(byte[] foto) {
+        this.foto = foto;
     }
     
     

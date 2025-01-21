@@ -3,13 +3,14 @@ package edu.cibertec.capi2.controller;
 
 import edu.cibertec.capi2.model.UsuarioDTO;
 import edu.cibertec.capi2.service.UsuarioService;
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -43,11 +44,13 @@ public class UsuarioController {
     }
     
     @RequestMapping("grabarUsuario.do")
-    public ModelAndView grabarUsuario(@Valid @ModelAttribute("usuarioBean") UsuarioDTO usuario, BindingResult result){
+    public ModelAndView grabarUsuario(@Valid @ModelAttribute("usuarioBean") UsuarioDTO usuario, BindingResult result,
+            @RequestParam("archivo") CommonsMultipartFile archivo){
         ModelAndView mv = null;
         if(result.hasErrors()){
              mv = new ModelAndView("usuarioDatos", "usuarioBean", usuario);
         }else{
+            usuario.setFoto(archivo.getBytes());
             usuarioService.insertarUsuario(usuario);
             mv = new ModelAndView("usuarioLista", "lista", usuarioService.getListarUsuarios());
         }

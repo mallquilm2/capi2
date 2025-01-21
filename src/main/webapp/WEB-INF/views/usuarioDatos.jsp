@@ -38,6 +38,9 @@
                                 <td><mvc:errors path="nombreCompleto"/></td>
                             </tr>
                             <tr>
+                                <td><input type="file" name="archivo"></td>
+                            </tr>
+                            <tr>
                                 <td colspan="1">
                                     <input type="submit" value="Insertar" class="btn btn-primary"/>
                                 </td>
