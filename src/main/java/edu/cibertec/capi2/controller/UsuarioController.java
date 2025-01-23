@@ -3,6 +3,7 @@ package edu.cibertec.capi2.controller;
 
 import edu.cibertec.capi2.model.UsuarioDTO;
 import edu.cibertec.capi2.service.UsuarioService;
+import java.util.Base64;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -60,7 +61,13 @@ public class UsuarioController {
     
     @RequestMapping("fotoMostrar.do")
     public String fotoMostrar(@RequestParam("codigoUsuario") String codigoUsuario, Model modelo){
-        modelo.addAttribute("usuario", usuarioService.getUsuario(codigoUsuario));
+        UsuarioDTO user = usuarioService.getUsuario(codigoUsuario);
+        String foto = "";
+        modelo.addAttribute("usuario", user);
+        if(user.getFoto() != null && user.getFoto().length>0){
+            foto = Base64.getEncoder().encodeToString(user.getFoto());
+        }
+        modelo.addAttribute("foto64", foto);
         return "fotoUsuario";
     }
     
