@@ -18,7 +18,7 @@
             <div class="row d-flex justify-content-center mx-auto">
                 <h1>Datos del Usuario</h1>
                 <div class="col-md-6 col-xs-12 div-style">
-                    <form th:object="${usuarioBean}" th:action="@{grabarUsuario.do}" enctype="multipart/form-data">
+                    <form th:object="${usuarioBean}" th:action="@{grabarUsuario.do}" enctype="multipart/form-data" method="post">
                         <table>
                             <tr>
                                 <td><label>Usuario:</label></td>

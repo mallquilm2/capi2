@@ -7,6 +7,6 @@
     <body>
         <h1>Foto Usuario</h1>
         <img th:src="@{'data:image/jpeg;base64,'+${foto64}}" th:if="${usuario.foto}"/>
-        <h2 th:unless="${usuario.foto}" th:text="Usuario aun sin foto"></h2>
+        <h2 th:unless="${usuario.foto}" th:text="'Usuario aun sin foto'"></h2>
     </body>
 </html>
