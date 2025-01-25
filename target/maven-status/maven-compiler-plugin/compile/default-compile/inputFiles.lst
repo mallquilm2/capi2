@@ -1,5 +1,5 @@
-/Users/miguel/NetBeansProjects/capi2/src/main/java/edu/cibertec/capi2/model/UsuarioDTO.java
-/Users/miguel/NetBeansProjects/capi2/src/main/java/edu/cibertec/capi2/SaludoController.java
-/Users/miguel/NetBeansProjects/capi2/src/main/java/edu/cibertec/capi2/controller/UsuarioController.java
-/Users/miguel/NetBeansProjects/capi2/src/main/java/edu/cibertec/capi2/service/UsuarioService.java
-/Users/miguel/NetBeansProjects/capi2/src/main/java/edu/cibertec/capi2/dao/UsuarioDAO.java
+/Users/miguel/NetBeansProjects/capi2/src/main/java/edu/cibertec/capitulo3/controller/UsuarioController.java
+/Users/miguel/NetBeansProjects/capi2/src/main/java/edu/cibertec/capitulo3/SaludoController.java
+/Users/miguel/NetBeansProjects/capi2/src/main/java/edu/cibertec/capitulo3/dao/entity/UsuarioEntity.java
+/Users/miguel/NetBeansProjects/capi2/src/main/java/edu/cibertec/capitulo3/dao/UsuarioDAO.java
+/Users/miguel/NetBeansProjects/capi2/src/main/java/edu/cibertec/capitulo3/service/UsuarioService.java
