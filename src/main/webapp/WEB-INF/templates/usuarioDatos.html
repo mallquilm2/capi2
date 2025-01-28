@@ -22,7 +22,7 @@
                         <table>
                             <tr>
                                 <td><label>Usuario:</label></td>
-                                <td><input id="usuario" th:field="*{usuario}" class="form-control text-box" th:attr="disabled=${accion=='Modificar'? 'disabled':null}"/></td>
+                                <td><input id="usuario" th:field="*{usuario}" class="form-control text-box" th:attr="readonly=${accion=='Modificar'? 'disabled':null}"/></td>
                                 <td th:if="${#fields.hasErrors('usuario')}" th:errorclass="formFieldError" th:errors="*{usuario}"/>
                             </tr>
                             <tr>

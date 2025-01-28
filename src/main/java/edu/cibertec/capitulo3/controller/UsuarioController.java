@@ -12,10 +12,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@SessionAttributes("accionSesion")
 public class UsuarioController {
     
     @Autowired
@@ -41,30 +43,33 @@ public class UsuarioController {
     }
     
     @RequestMapping("usuarioCrear.do")
-    public ModelAndView crearUsuario(){
+    public ModelAndView crearUsuario(Model model){
         ModelAndView mv = new ModelAndView("usuarioDatos", "usuarioBean", new UsuarioEntity());
         mv.addObject("accion","Insertar");
+        model.addAttribute("accionSesion", "Insertar");
         return mv;
     }
     
     @RequestMapping("usuarioMod.do")
-    public ModelAndView usuarioModificar(@RequestParam("codigoUsuario") String codigo){
+    public ModelAndView usuarioModificar(@RequestParam("codigoUsuario") String codigo, Model model){
         ModelAndView mv = new ModelAndView("usuarioDatos", "usuarioBean", usuarioService.getUsuario(codigo));
         mv.addObject("accion","Modificar");
+        model.addAttribute("accionSesion", "Modificar");
         return mv;
     }
     
     @RequestMapping("grabarUsuario.do")
     public ModelAndView grabarUsuario(@Valid @ModelAttribute("usuarioBean") UsuarioEntity usuario, BindingResult result,
-            @RequestParam("archivo") CommonsMultipartFile archivo, @RequestParam("accion") String accion){
+            @RequestParam("archivo") CommonsMultipartFile archivo, Model model){
+        String accion = (String)model.getAttribute("accionSesion");
         ModelAndView mv = null;
         if(result.hasErrors()){
              mv = new ModelAndView("usuarioDatos", "usuarioBean", usuario);
         }else{
             usuario.setFoto(archivo.getBytes());
-            if(accion.equalsIgnoreCase("Insertar"))
+            if(accion.equalsIgnoreCase("Insertar")){
                 usuarioService.insertarUsuario(usuario);
-            else
+            }else
                 usuarioService.modificarUsuario(usuario);
             mv = new ModelAndView("usuarioLista", "lista", usuarioService.getListarUsuarios());
         }
