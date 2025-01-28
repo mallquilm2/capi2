@@ -42,18 +42,30 @@ public class UsuarioController {
     
     @RequestMapping("usuarioCrear.do")
     public ModelAndView crearUsuario(){
-        return new ModelAndView("usuarioDatos", "usuarioBean", new UsuarioEntity());
+        ModelAndView mv = new ModelAndView("usuarioDatos", "usuarioBean", new UsuarioEntity());
+        mv.addObject("accion","Insertar");
+        return mv;
+    }
+    
+    @RequestMapping("usuarioMod.do")
+    public ModelAndView usuarioModificar(@RequestParam("codigoUsuario") String codigo){
+        ModelAndView mv = new ModelAndView("usuarioDatos", "usuarioBean", usuarioService.getUsuario(codigo));
+        mv.addObject("accion","Modificar");
+        return mv;
     }
     
     @RequestMapping("grabarUsuario.do")
     public ModelAndView grabarUsuario(@Valid @ModelAttribute("usuarioBean") UsuarioEntity usuario, BindingResult result,
-            @RequestParam("archivo") CommonsMultipartFile archivo){
+            @RequestParam("archivo") CommonsMultipartFile archivo, @RequestParam("accion") String accion){
         ModelAndView mv = null;
         if(result.hasErrors()){
              mv = new ModelAndView("usuarioDatos", "usuarioBean", usuario);
         }else{
             usuario.setFoto(archivo.getBytes());
-            usuarioService.insertarUsuario(usuario);
+            if(accion.equalsIgnoreCase("Insertar"))
+                usuarioService.insertarUsuario(usuario);
+            else
+                usuarioService.modificarUsuario(usuario);
             mv = new ModelAndView("usuarioLista", "lista", usuarioService.getListarUsuarios());
         }
         return mv; 
@@ -65,6 +77,17 @@ public class UsuarioController {
         modelo.addAttribute("usuario", user);
         modelo.addAttribute("foto64", user.getFotoBase64());
         return "fotoUsuario";
+    }
+    
+    @RequestMapping("usuarioListar.do")
+    public ModelAndView usuarioListar(){
+        return new ModelAndView("usuarioLista", "lista", usuarioService.getListarUsuarios());
+    }
+    
+    @RequestMapping("usuarioEli.do")
+    public ModelAndView usuarioEliminar(@RequestParam("codigoUsuario") String codigo){
+        usuarioService.eliminarUsuario(codigo);
+        return new ModelAndView("redirect:usuarioListar.do");
     }
     
 }

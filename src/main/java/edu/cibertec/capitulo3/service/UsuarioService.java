@@ -39,4 +39,12 @@ public class UsuarioService {
         return rpta;
     }
     
+    public void modificarUsuario(UsuarioEntity usuario){
+        usuarioDAO.save(usuario);
+    }
+    
+    public void eliminarUsuario(String codigo){
+        usuarioDAO.deleteById(codigo);
+    }
+    
 }

@@ -22,7 +22,7 @@
                         <table>
                             <tr>
                                 <td><label>Usuario:</label></td>
-                                <td><input id="usuario" th:field="*{usuario}" class="form-control text-box"/></td>
+                                <td><input id="usuario" th:field="*{usuario}" class="form-control text-box" th:attr="disabled=${accion=='Modificar'? 'disabled':null}"/></td>
                                 <td th:if="${#fields.hasErrors('usuario')}" th:errorclass="formFieldError" th:errors="*{usuario}"/>
                             </tr>
                             <tr>
@@ -40,7 +40,7 @@
                             </tr>
                             <tr>
                                 <td colspan="1">
-                                    <input type="submit" value="Insertar" class="btn btn-primary"/>
+                                    <input type="submit" th:value="${accion}" class="btn btn-primary"/>
                                 </td>
                             </tr>
                         </table>
