@@ -62,12 +62,8 @@ public class UsuarioController {
     @RequestMapping("fotoMostrar.do")
     public String fotoMostrar(@RequestParam("codigoUsuario") String codigoUsuario, Model modelo){
         UsuarioEntity user = usuarioService.getUsuario(codigoUsuario);
-        String foto = "";
         modelo.addAttribute("usuario", user);
-        if(user.getFoto() != null && user.getFoto().length>0){
-            foto = Base64.getEncoder().encodeToString(user.getFoto());
-        }
-        modelo.addAttribute("foto64", foto);
+        modelo.addAttribute("foto64", user.getFotoBase64());
         return "fotoUsuario";
     }
     
