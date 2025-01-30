@@ -3,11 +3,11 @@ package edu.cibertec.capitulo3.controller;
 
 import edu.cibertec.capitulo3.dao.entity.UsuarioEntity;
 import edu.cibertec.capitulo3.service.UsuarioService;
-import java.util.Base64;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -87,9 +87,12 @@ public class UsuarioController {
     }
     
     @RequestMapping("usuarioListar.do")
-    public ModelAndView usuarioListar(@RequestParam("pag") int pag){
+    public ModelAndView usuarioListar(@RequestParam("pag") int pag, @RequestParam(value="orden", required = false, defaultValue = "usuario") String orden){
         Pageable pagina = null;
-        pagina = PageRequest.of(pag, 5);
+        if(orden == null || orden.equalsIgnoreCase("null"))
+            pagina = PageRequest.of(pag, 5);
+        else
+          pagina = PageRequest.of(pag, 5, Sort.by(orden));
         return new ModelAndView("usuarioLista", "lista", usuarioService.getListarUsuarios(pagina));
     }
     
