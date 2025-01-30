@@ -6,6 +6,8 @@ import edu.cibertec.capitulo3.dao.entity.UsuarioEntity;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,20 +17,15 @@ public class UsuarioService {
     private UsuarioDAO usuarioDAO;
     
     public UsuarioEntity validarLogin(UsuarioEntity usuario){
-        UsuarioEntity rpta = getUsuario(usuario.getUsuario());
-        if(rpta == null)
-            return rpta;
-        if(!rpta.getClave().equalsIgnoreCase(usuario.getClave()))
-            return null;
-        return rpta;
+        return usuarioDAO.findByUsuarioAndClave(usuario.getUsuario(), usuario.getClave());
     }
     
     public void insertarUsuario(UsuarioEntity usuario){
         usuarioDAO.save(usuario);
     }
     
-    public List<UsuarioEntity> getListarUsuarios(){
-        return usuarioDAO.findAll();
+    public List<UsuarioEntity> getListarUsuarios(Pageable pagina){
+        return usuarioDAO.findAll(pagina).getContent();
     }
     
     public UsuarioEntity getUsuario(String codigo){

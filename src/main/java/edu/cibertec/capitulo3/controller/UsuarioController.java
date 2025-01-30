@@ -6,6 +6,8 @@ import edu.cibertec.capitulo3.service.UsuarioService;
 import java.util.Base64;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -37,7 +39,7 @@ public class UsuarioController {
             mv = new ModelAndView("login", "msgError", "Usuario y clave no existen.");
         }else{
             //mv = new ModelAndView("saludo", "mensaje", "Bienvenido "+ue.getNombreCompleto());
-            mv = new ModelAndView("usuarioLista", "lista", usuarioService.getListarUsuarios());
+            mv = new ModelAndView("redirect:usuarioListar.do?pag=0");
         }
         return mv;
     }
@@ -71,7 +73,7 @@ public class UsuarioController {
                 usuarioService.insertarUsuario(usuario);
             }else
                 usuarioService.modificarUsuario(usuario);
-            mv = new ModelAndView("usuarioLista", "lista", usuarioService.getListarUsuarios());
+            mv = new ModelAndView("redirect:usuarioListar.do?pag=0");
         }
         return mv; 
     }
@@ -85,14 +87,16 @@ public class UsuarioController {
     }
     
     @RequestMapping("usuarioListar.do")
-    public ModelAndView usuarioListar(){
-        return new ModelAndView("usuarioLista", "lista", usuarioService.getListarUsuarios());
+    public ModelAndView usuarioListar(@RequestParam("pag") int pag){
+        Pageable pagina = null;
+        pagina = PageRequest.of(pag, 5);
+        return new ModelAndView("usuarioLista", "lista", usuarioService.getListarUsuarios(pagina));
     }
     
     @RequestMapping("usuarioEli.do")
     public ModelAndView usuarioEliminar(@RequestParam("codigoUsuario") String codigo){
         usuarioService.eliminarUsuario(codigo);
-        return new ModelAndView("redirect:usuarioListar.do");
+        return new ModelAndView("redirect:usuarioListar.do?pag=0");
     }
     
 }
