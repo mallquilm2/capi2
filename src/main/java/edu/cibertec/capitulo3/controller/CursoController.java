@@ -3,6 +3,8 @@ package edu.cibertec.capitulo3.controller;
 
 import edu.cibertec.capitulo3.service.CursoService;
 import java.sql.Date;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,25 +22,32 @@ public class CursoController {
         return "cursoBusqueda";
     }
     
-    @RequestMapping("cursoBusqueda")
-    public ModelAndView menuConsultas(@RequestParam("tipo") String tipo){
+    @RequestMapping("cursoBusqueda.do")
+    public ModelAndView menuConsultas(HttpServletRequest request){
         ModelAndView mv = new ModelAndView("cursoBusqueda");
+        String tipo = request.getParameter("tipo");
         
         switch (tipo) {
             case "estado":
-                int estado = Integer.parseInt(tipo);
-                mv.addObject("lista", cursoService.consultarPorEstado(estado));
+                mv.addObject("lista", cursoService.consultarPorEstado(Integer.parseInt(request.getParameter("estado"))));
                 break;
             case "incompleto":
                 mv.addObject("lista", cursoService.abiertoIncompleto());
                 break;
             case "porfecha":
-                
+                mv.addObject("lista", cursoService.consultarPorFecha(Date.valueOf(request.getParameter("fecha"))));
+                break;
+            case "faltante":
+                mv.addObject("lista", cursoService.consultarFaltantes(Integer.parseInt(request.getParameter("cantidad"))));
+                break;
+            case "nombre":
+                mv.addObject("lista", cursoService.consultarPorNombre(request.getParameter("nombre")));
+                break;
             default:
                 throw new AssertionError();
         }
         
-        return null;
+        return mv;
     }
     
 }

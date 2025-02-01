@@ -26,7 +26,7 @@ public interface CursoDAO  extends JpaRepository<CursoEntity, Integer>{
     //Consulta de cursos a los que falta X numeros de alumnos para llenarse.
     @Query(value = "SELECT * FROM Curso WHERE alumnosMin - alumnosAct = :cantidad",
             nativeQuery = true)
-    public List<CursoEntity> consultarFaltantes(@Param("cantidad") String cantidad);
+    public List<CursoEntity> consultarFaltantes(@Param("cantidad") Integer cantidad);
     
     //Consulta por SP
     @Query(nativeQuery = true, value = "call Curso_Por_Nombre(:cadena)")

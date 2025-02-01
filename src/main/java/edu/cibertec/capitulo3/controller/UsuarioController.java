@@ -38,8 +38,7 @@ public class UsuarioController {
         if(ue == null){
             mv = new ModelAndView("login", "msgError", "Usuario y clave no existen.");
         }else{
-            //mv = new ModelAndView("saludo", "mensaje", "Bienvenido "+ue.getNombreCompleto());
-            mv = new ModelAndView("redirect:usuarioListar.do?pag=0");
+            mv = new ModelAndView("menu", "mensaje", "Bienvenid@ "+ue.getNombreCompleto());
         }
         return mv;
     }
@@ -87,7 +86,7 @@ public class UsuarioController {
     }
     
     @RequestMapping("usuarioListar.do")
-    public ModelAndView usuarioListar(@RequestParam("pag") int pag, @RequestParam(value="orden", required = false, defaultValue = "usuario") String orden){
+    public ModelAndView usuarioListar(@RequestParam(value="pag", required = false, defaultValue = "0") int pag, @RequestParam(value="orden", required = false, defaultValue = "usuario") String orden){
         Pageable pagina = null;
         if(orden == null || orden.equalsIgnoreCase("null"))
             pagina = PageRequest.of(pag, 5);

@@ -13,7 +13,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "curso")
 @NamedQuery(name = "CursoEntity.abiertoIncompleto",
-        query = "SELECT c FROM CursoEntity c WHERE c.alumnosMin > c.alumnosAct c.estado = 1")
+        query = "SELECT c FROM CursoEntity c WHERE c.alumnosMin > c.alumnosAct and c.estado = 1")
 public class CursoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

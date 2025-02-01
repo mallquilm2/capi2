@@ -28,7 +28,7 @@ public class CursoService {
         return cursoDao.consultarPorFecha(fecha);
     }
     
-    public List<CursoEntity> consultarFaltantes(String cantidad){
+    public List<CursoEntity> consultarFaltantes(Integer cantidad){
         return cursoDao.consultarFaltantes(cantidad);
     }
     
