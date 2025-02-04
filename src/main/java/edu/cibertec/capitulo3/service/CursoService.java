@@ -36,4 +36,8 @@ public class CursoService {
         return cursoDao.consultarPorNombre(cadena);
     }
     
+    public List<CursoEntity> listarTodosLosCursos(){
+        return cursoDao.findAll();
+    }
+    
 }

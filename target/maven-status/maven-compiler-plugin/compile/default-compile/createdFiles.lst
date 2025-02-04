@@ -1,9 +1,13 @@
-edu/cibertec/capitulo3/dao/UsuarioDAO.class
 edu/cibertec/capitulo3/SaludoController.class
-edu/cibertec/capitulo3/service/UsuarioService.class
 edu/cibertec/capitulo3/dao/entity/CursoEntity.class
-edu/cibertec/capitulo3/service/CursoService.class
+edu/cibertec/capitulo3/dao/entity/MatriculaEntity.class
 edu/cibertec/capitulo3/dao/CursoDAO.class
-edu/cibertec/capitulo3/controller/CursoController.class
+edu/cibertec/capitulo3/dao/MatriculaDAO.class
 edu/cibertec/capitulo3/dao/entity/UsuarioEntity.class
+edu/cibertec/capitulo3/controller/MatriculaController.class
 edu/cibertec/capitulo3/controller/UsuarioController.class
+edu/cibertec/capitulo3/dao/UsuarioDAO.class
+edu/cibertec/capitulo3/service/UsuarioService.class
+edu/cibertec/capitulo3/service/CursoService.class
+edu/cibertec/capitulo3/controller/CursoController.class
+edu/cibertec/capitulo3/service/MatriculaService.class
